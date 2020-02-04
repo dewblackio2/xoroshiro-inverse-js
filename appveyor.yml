@@ -18,10 +18,10 @@ build_script:
 
 test: off
 
-# environment:
-#   GH_TOKEN:
-#     secure: rtwqQ0lpjwUxes3Vnn+KGMqTn1CBUnWwoXdksyqUrJdOdN/dmakG7QYf0qPG2Il/
+environment:
+  GH_TOKEN:
+    secure: nKZ9dCUFltzD3cSiHSSnW5uQLi+cGS3zVJFglq1ocfGEJ5ZmMdHTnSt6ZPNIeZPD
 
 branches:
   only:
-    - stable
+    - master

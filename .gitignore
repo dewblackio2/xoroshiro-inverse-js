@@ -6,5 +6,6 @@ dist/
 npm-debug.log
 debug.log
 *.log.*
+./debug.log
 full_log.txt
 bundle.js
