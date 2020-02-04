@@ -4,6 +4,7 @@ dist/
 .vscode/
 .DS_STORE
 npm-debug.log
+debug.log
 *.log.*
 full_log.txt
 bundle.js
