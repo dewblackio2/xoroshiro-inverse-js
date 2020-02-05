@@ -1,7 +1,7 @@
 {
   "name": "xoroshiro-inverse-js",
   "productName": "Xoroshiro Inverse JS",
-  "version": "0.0.01",
+  "version": "0.0.2",
   "description": "",
   "main": "./app/main.js",
   "scripts": {

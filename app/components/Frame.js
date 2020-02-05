@@ -429,15 +429,16 @@ class Frame extends React.Component {
           if (pkmn[pkm].Rarity == addition.Rarity) {
             shouldAdd = false;
             break;
-          } else if (counter > 14 && addition.Stars.length == 1 && pkmn[pkm].Stars.length == 1) {
-            var parsedRateCheck = Number(pkmn[pkm].Rarity.replace(/\D/g, ''));
-            var parsedRateCurrent = Number(addition.Rarity.replace(/\D/g, ''));
-            if (parsedRateCheck > parsedRateCurrent) {
-              pkmn[pkm].Name = '[G-MAX] ' + pkmn[pkm].Name;
-            } else if (parsedRateCheck < parsedRateCurrent) {
-              addition.Name = '[G-MAX] ' + addition.Name;
-            }
           }
+          // } else if (counter > 14 && addition.Stars.length == 1 && pkmn[pkm].Stars.length == 1) {
+          //   var parsedRateCheck = Number(pkmn[pkm].Rarity.replace(/\D/g, ''));
+          //   var parsedRateCurrent = Number(addition.Rarity.replace(/\D/g, ''));
+          //   if (parsedRateCheck > parsedRateCurrent) {
+          //     pkmn[pkm].Name = '[G-MAX] ' + pkmn[pkm].Name;
+          //   } else if (parsedRateCheck < parsedRateCurrent) {
+          //     addition.Name = '[G-MAX] ' + addition.Name;
+          //   }
+          // }
         }
       }
       if (shouldAdd) {
