@@ -88,18 +88,20 @@ class Layout extends React.Component {
             <Icon name="settings" />
             Settings
           </Menu.Item> */}
-          <Menu.Item
-            disabled={this.state.loading || this.state.disableNavigation}
-            color="blue"
-            name="help"
-            link
-            active={this.state.activeItem === 'help' || this.state.loading}
-            data-path="help"
-            onClick={this.navigateFromElement.bind(this)}
-          >
-            <Icon name="help circle" />
-            Help
-          </Menu.Item>
+          {this.state.disableNavigation ? null : (
+            <Menu.Item
+              disabled={this.state.loading || this.state.disableNavigation}
+              color="blue"
+              name="help"
+              link
+              active={this.state.activeItem === 'help' || this.state.loading}
+              data-path="help"
+              onClick={this.navigateFromElement.bind(this)}
+            >
+              <Icon name="help circle" />
+              Help
+            </Menu.Item>
+          )}
           <span id="version" className={this.state.compactMode ? 'expanded' : ''}>
             v{appVersion}-alpha
           </span>
