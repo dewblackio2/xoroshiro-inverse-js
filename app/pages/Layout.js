@@ -11,7 +11,7 @@ const appVersion = require('electron').remote.app.getVersion();
 class Layout extends React.Component {
   constructor() {
     super();
-    this.state = { activeItem: 'main', loading: false, compactMode: false, compactLogs: false, seedSearching: false };
+    this.state = { activeItem: 'main', loading: false, compactMode: false, compactLogs: false, disableNavigation: false };
     this.toggleCompactLogs = this.toggleCompactLogs.bind(this);
   }
 
@@ -20,19 +20,24 @@ class Layout extends React.Component {
       this.setState({ loading: data });
     });
 
-    ipcRenderer.on('searchStarting', () => {
-      this.setState({ seedSearching: true });
+    ipcRenderer.on('toggleNavigation', (event, data) => {
+      this.setState({ disableNavigation: data });
     });
 
-    ipcRenderer.on('searchComplete', () => {
-      this.setState({ seedSearching: false });
-    });
+    // ipcRenderer.on('searchStarting', () => {
+    //   this.setState({ seedSearching: true });
+    // });
+
+    // ipcRenderer.on('searchComplete', () => {
+    //   this.setState({ seedSearching: false });
+    // });
   }
 
   componentWillUnmount() {
     ipcRenderer.removeAllListeners('denloading');
-    ipcRenderer.removeAllListeners('searchStarting');
-    ipcRenderer.removeAllListeners('searchComplete');
+    ipcRenderer.removeAllListeners('toggleNavigation');
+    // ipcRenderer.removeAllListeners('searchStarting');
+    // ipcRenderer.removeAllListeners('searchComplete');
   }
 
   navigate(path, name) {
@@ -60,7 +65,7 @@ class Layout extends React.Component {
 
         <Menu fixed="left" vertical inverted width="thin" className={this.state.compactMode ? 'expanded side-menu' : 'side-menu'}>
           <Menu.Item
-            disabled={this.state.loading || this.state.seedSearching}
+            disabled={this.state.loading || this.state.disableNavigation}
             color="blue"
             name="main"
             link
@@ -84,7 +89,7 @@ class Layout extends React.Component {
             Settings
           </Menu.Item> */}
           <Menu.Item
-            disabled={this.state.loading || this.state.seedSearching}
+            disabled={this.state.loading || this.state.disableNavigation}
             color="blue"
             name="help"
             link

@@ -134,6 +134,11 @@ class Main extends React.Component {
 
   tabChanged(e, element) {
     //console.log(element);
+    if (element.activeIndex == 4) {
+      ipcRenderer.send('toggleNavigation', true);
+    } else if (this.state.activeTab == 4 && element.activeIndex != 4) {
+      ipcRenderer.send('toggleNavigation', false);
+    }
     if (this.state.ivsValidated && element.activeIndex == 0) {
       this.setState({ portalOpen: true });
     } else {

@@ -19,7 +19,8 @@ class Head extends React.Component {
       activeDenMap: '',
       denMapData: {},
       maploading: false,
-      seedSearching: false
+      seedSearching: false,
+      disableNavigation: false
     };
   }
 
@@ -54,6 +55,10 @@ class Head extends React.Component {
     ipcRenderer.on('searchComplete', () => {
       this.setState({ seedSearching: false });
     });
+
+    ipcRenderer.on('toggleNavigation', (event, data) => {
+      this.setState({ disableNavigation: data });
+    });
     if (config.Config.Profile.game >= 0) {
       this.setState({ game: config.Config.Profile.game });
     }
@@ -68,6 +73,7 @@ class Head extends React.Component {
     ipcRenderer.removeAllListeners('denupdated');
     ipcRenderer.removeAllListeners('searchStarting');
     ipcRenderer.removeAllListeners('searchComplete');
+    ipcRenderer.removeAllListeners('toggleNavigation');
   }
 
   changeGame(e, element) {
@@ -197,7 +203,7 @@ class Head extends React.Component {
         <Menu.Item header>Game Version</Menu.Item>
         <Menu.Item color="blue">
           <Dropdown
-            disabled={this.state.loading || this.state.seedSearching}
+            disabled={this.state.loading || this.state.seedSearching || this.state.disableNavigation}
             selection
             options={gameOptions}
             defaultValue={config.Config.Profile.game}
@@ -208,7 +214,7 @@ class Head extends React.Component {
         <Menu.Item header>Den</Menu.Item>
         <Menu.Item color="blue">
           <Dropdown
-            disabled={this.state.loading || this.state.seedSearching || this.state.game < 0}
+            disabled={this.state.loading || this.state.seedSearching || this.state.game < 0 || this.state.disableNavigation}
             selection
             options={denOptions}
             value={this.state.denIndex}

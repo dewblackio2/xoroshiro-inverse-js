@@ -126,6 +126,10 @@ ipcMain.on('updateConfig', () => {
   });
 });
 
+ipcMain.on('toggleNavigation', (event, data) => {
+  win.webContents.send('toggleNavigation', data);
+});
+
 ipcMain.on('validateFrame4', (event, data) => {
   win.webContents.send('validateFrame4', data);
 });
